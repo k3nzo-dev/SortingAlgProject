@@ -5,13 +5,10 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class BookSort {
-    public static boolean checkStartEnd(String word, char test){
-        return word.charAt(0) == test || word.charAt(word.length() - 1) == test;
-    }
 
-    public static ArrayList<String> bookSort(File file){
+    public static ArrayList<String> bookSort(File file) {
         Scanner input = null;
-        ArrayList<String> allWords = new ArrayList<String>();
+        ArrayList<String> allWords = new ArrayList<>();
 
         try {
             input = new Scanner(file);
@@ -20,8 +17,8 @@ public class BookSort {
         }
 
         while (input.hasNext()) {
-            String word  = input.next();
-            word.replaceAll("[.,?!<>|}{'\\/'\"  ]", "");
+            String word = input.next();
+            //word.replaceAll("[.,?!<>|}{'\\/'\"  ]", "");
             allWords.add(word);
 
         }
