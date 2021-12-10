@@ -1,16 +1,19 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+/*
+ * Base code from StackOverflow: https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
+ */
+
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.BevelBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
 
 class JavaPaintUI extends JFrame {
 
 
-
-    private int tool = 1;
+    private final int tool = 1;
     int currentX, currentY, oldX, oldY;
 
 
@@ -97,34 +100,30 @@ class JavaPaintUI extends JFrame {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            for (int i = 0; i < 25; i++) {
-                g.fillRect(20 + (i * 55), 725 - (i * 25), 20, 1500);
 
-            }
-//
-//            Integer[] intArray = Utility.ShuffledIntArray();
-//
-//            boolean sorted = false;
-//            int temp;
-//            while (!sorted) {
-//                sorted = true;
-//                for (int i = 0; i < intArray.length - 1; i++) {
-//                    if (intArray[i] > intArray[i + 1]) {
-//                        temp = intArray[i];
-//                        intArray[i] = intArray[i + 1];
-//                        intArray[i + 1] = temp;
-//                        sorted = false;
-//
-//                    }
-//                    g.fillRect(20 + (intArray[i] * 55), 725 - (intArray[i] * 25), 20, 1500);
-//                }
-//
-//            }
-
+            JavaPaintUI.bubSortDraw(g);
 
         }
 
+    }
 
+    private static void bubSortDraw(Graphics g) {
+        ArrayList<Integer> intArray = Utility.ShuffledIntArray(25);
+        System.out.println(intArray);
+        boolean sorted = false;
+        int temp;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < intArray.size() - 1; i++) {
+                if (intArray.get(i) > intArray.get(i + 1)) {
+                    temp = intArray.get(i);
+                    intArray.set(i, intArray.get(i + 1));
+                    intArray.set(i + 1, temp);
+                    sorted = false;
+                }
+                g.fillRect(20 + (intArray.get(i) * 55), 725 - (intArray.get(i) * 25), 20, 1500);
+            }
 
+        }
     }
 }
