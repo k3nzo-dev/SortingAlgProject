@@ -11,16 +11,16 @@ public class SelectionSort {
 
         for (int i = 0; i < intArray.length; i++) {
             int min = intArray[i];
-            int minId = i;
+            int minIndex = i;
             for (int j = i + 1; j < intArray.length; j++) {
                 if (intArray[j] < min) {
                     min = intArray[j];
-                    minId = j;
+                    minIndex = j;
                 }
             }
             int temp = intArray[i];
             intArray[i] = min;
-            intArray[minId] = temp;
+            intArray[minIndex] = temp;
         }
         return intList;
     }

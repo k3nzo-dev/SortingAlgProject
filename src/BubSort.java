@@ -19,6 +19,7 @@ public class BubSort {
                     intArray[i] = intArray[i + 1];
                     intArray[i + 1] = temp;
                     sorted = false;
+
                 }
             }
         }

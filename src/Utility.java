@@ -9,9 +9,9 @@ public class Utility {
         return response.equals("yes") || response.equals("y") || response.equals("yeah");
     }
 
-    public static void sleepIt(int mls) {
+    public static void sleepIt(int ms) {
         try {
-            Thread.sleep(mls);
+            Thread.sleep(ms);
         } catch (InterruptedException e) {
             System.out.println("A runtime error has occurred");
         }
