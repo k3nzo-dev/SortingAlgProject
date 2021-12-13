@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 class JavaPaintUI extends JFrame
@@ -83,7 +84,7 @@ class JavaPaintUI extends JFrame
 
         BarPanel() {
             // set a preferred size for the custom panel.
-            setPreferredSize(new Dimension(1500, 800));
+            setPreferredSize(new Dimension(3000, 1600));
         }
 
 
@@ -100,23 +101,61 @@ class JavaPaintUI extends JFrame
     private void draw(Graphics g) {
         if (this.data != null) {
 
-            int barWidth = this.getWidth() / this.data.size() / 2;
+            Graphics2D g2d = (Graphics2D) g;
+
+
+            double panelWidth = this.getWidth();
+
+            double barWidth = (panelWidth / this.data.size()) / 2;
+
             int yRange = this.getHeight() - (Y_MARGIN_BOT + Y_MARGIN_TOP);
 
 
             for (int i = 0; i < this.data.size(); i++) {
+
+//                double stepSize = (double)yRange / this.data.size();
+//                double space = yRange - (stepSize * this.data.get(i));
+//
+//
+//                double baseX = X_MARGIN + (i * (barWidth * 2));
+//                double baseY = Y_MARGIN_TOP + space;
+//                double height = (this.data.get(i) + 1) * stepSize;
+//
+//
+//
+//
+//                Rectangle2D r2d = new Rectangle2D.Double(height,barWidth,baseX,baseY);
+//                g2d.fill(r2d);
+
                 int stepSize = yRange / this.data.size();
                 int space = yRange - (stepSize * this.data.get(i));
 
-                int height = (this.data.get(i) + 1) * stepSize;
-                int baseX = X_MARGIN + (i * (barWidth * 2));
+                int baseX = new Double(X_MARGIN + (i * (barWidth * 2))).intValue();
                 int baseY = Y_MARGIN_TOP + space;
-                //(725 - Y_MARGIN_BOT) - (this.data.get(i) * 20);
-//                if (baseY >= this.getHeight())
-//                    baseY = this.getHeight() + Y_MARGIN_BOT;
+
+                int width = new Double(barWidth).intValue();
+                int height = (this.data.get(i) + 1) * stepSize;
+
+                int r1 = 255;
+                int g1 = 0;
+                int b1 = 0;
+
+                int r2 = 255;
+                int g2 = 171;
+                int b2 = 171;
+
+                int redIncrease = (r2 - r1) / this.data.size();
+                int greenIncrease = (g2 - g1) / this.data.size();
+                int blueIncrease = (b2 - b1) / this.data.size();
 
 
-                g.fillRoundRect(baseX, baseY, barWidth, height, 15, 15);
+
+                g.setColor(new java.awt.Color(
+                        r1 + (redIncrease * this.data.get(i)),
+                        g1 + (greenIncrease * this.data.get(i)),
+                        b1 + (blueIncrease * this.data.get(i))));
+
+                g.fillRoundRect(baseX, baseY, width, height, 15, 15);
             }
         }
 
