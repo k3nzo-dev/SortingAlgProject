@@ -24,7 +24,7 @@ public class Utility {
 
     public static ArrayList<Integer> ShuffledIntArray(int max) {
         ArrayList<Integer> intList = new ArrayList<>();
-        for (int i = 0; i <= max; i++) {
+        for (int i = 0; i < max; i++) {
             intList.add(i);
         }
         Collections.shuffle(intList);

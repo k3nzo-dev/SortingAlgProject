@@ -28,7 +28,6 @@ public class BubSortAlg
                 }
             }
             this.fireSortingPassEnd(pass,this.data);
-            System.out.println(this.data);
             Utility.sleepIt(delay);
             pass++;
             //end pass
