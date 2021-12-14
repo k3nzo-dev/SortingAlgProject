@@ -1,5 +1,6 @@
 /*
- * Base code from StackOverflow: https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
+ * All of this code except the "draw, onEndSortingPass and onStartSortingPass are from Stack Overflow
+ *   https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
  */
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ class JavaPaintUI extends JFrame
     int currentX, currentY, oldX, oldY;
     private ArrayList<Integer> data;
     private JPanel jPanel;
+
     private static int Y_MARGIN_TOP = 10;
     private static int Y_MARGIN_BOT = 50;
     private static int X_MARGIN = 20;
@@ -101,12 +103,12 @@ class JavaPaintUI extends JFrame
     private void draw(Graphics g) {
         if (this.data != null) {
 
-            Graphics2D g2d = (Graphics2D) g;
+//            Graphics2D g2d = (Graphics2D) g;
 
 
             double panelWidth = this.getWidth();
 
-            double barWidth = (panelWidth / this.data.size()) / 2;
+            double barWidth = (panelWidth / this.data.size());
 
             int yRange = this.getHeight() - (Y_MARGIN_BOT + Y_MARGIN_TOP);
 
@@ -136,24 +138,33 @@ class JavaPaintUI extends JFrame
                 int width = new Double(barWidth).intValue();
                 int height = (this.data.get(i) + 1) * stepSize;
 
-                int r1 = 255;
-                int g1 = 0;
-                int b1 = 0;
+                float r1 = 1.00000F;
+                float g1 = 0.83137F;
+                float b1 = 0.91765F;
 
-                int r2 = 255;
-                int g2 = 171;
-                int b2 = 171;
+                float r2 = 0.24706F;
+                float g2 = 0.78824F;
+                float b2 = 0.75294F;
 
-                int redIncrease = (r2 - r1) / this.data.size();
-                int greenIncrease = (g2 - g1) / this.data.size();
-                int blueIncrease = (b2 - b1) / this.data.size();
+                Float rDif = r1 - r2;
+                Float gDif = g1 - g2;
+                Float bDif = b1 - b2;
+
+                double rScale = rDif / this.data.size();
+                double gScale = gDif / this.data.size();
+                double bScale = bDif / this.data.size();
 
 
+                for (int j = 0; j < this.data.get(i); j++) {
+                    r1 -= rScale;
+                    b1 -= bScale;
+                    g1 -= gScale;
 
-                g.setColor(new java.awt.Color(
-                        r1 + (redIncrease * this.data.get(i)),
-                        g1 + (greenIncrease * this.data.get(i)),
-                        b1 + (blueIncrease * this.data.get(i))));
+                }
+                Color test = new java.awt.Color(r1, g1, b1);
+
+                //gives each of the indexes its own color
+                g.setColor(test);
 
                 g.fillRoundRect(baseX, baseY, width, height, 15, 15);
             }
@@ -166,7 +177,7 @@ class JavaPaintUI extends JFrame
     public void onStartSortingPass(int pass, ArrayList<Integer> data) {
         this.data = data;
 
-        //at the start only the first time
+        //only runs the first time the first time
         if (pass == 0) {
             this.jPanel.repaint();
         }
@@ -174,8 +185,7 @@ class JavaPaintUI extends JFrame
 
     @Override
     public void onEndSortingPass(int pass, ArrayList<Integer> data) {
-        //every time at the end of the pass
-
+        //paints every time at the end of the pass
         this.jPanel.repaint();
     }
 }

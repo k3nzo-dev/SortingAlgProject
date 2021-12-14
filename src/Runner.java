@@ -17,7 +17,6 @@ public class Runner {
         while (cont) {
 
 
-
             String[] choices = {"Bubble", "Selection"};
             String instructions = "What sort method would you like to use?";
             String title = "Sort Chose";
@@ -50,7 +49,18 @@ public class Runner {
                 sorter.sort(sortSpeed * 10);
             }
 
-            cont = Utility.answeredYes(JOptionPane.showInputDialog("Would you like to continue"));
+            String[] options = {"Yes", "No"};
+            String contChoice = (String) JOptionPane.showInputDialog(
+                    null,
+                    "Would you like to continue", //text in window
+                    "Continue", //titlebar
+                    JOptionPane.PLAIN_MESSAGE, //the icon type
+                    null,
+                    options, //array of options
+                    options[0]); //the default
+            if (contChoice == "No") {
+                cont = false;
+            }
 
 
             //ArrayList<String> sortedBook = BookSort.bookSort(book);
