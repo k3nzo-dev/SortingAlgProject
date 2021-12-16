@@ -11,6 +11,7 @@ public class SelectionSortAlg
         int pass = 0;
         for (int i = 0; i < this.data.size(); i++) {
 
+            //triggers the first draw
             this.fireSortingPassStart(pass, this.data);
 
             int min = this.data.get(i);
@@ -19,17 +20,23 @@ public class SelectionSortAlg
             for (int j = i + 1; j < this.data.size(); j++) {
 
                 if (this.data.get(j) < min) {
+                    //stores for swap
                     min = this.data.get(j);
                     minIndex = j;
                 }
+
             }
+
             //swaps values
             int temp = this.data.get(i);
             this.data.set(i, min);
             this.data.set(minIndex, temp);
 
-            this.fireSortingPassEnd(pass,this.data);
+            //trigger the draw
+            this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
+
+            //increases the pass number and ends pass
             pass++;
 
 

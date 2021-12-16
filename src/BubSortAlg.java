@@ -13,24 +13,34 @@ public class BubSortAlg
         int temp;
         int pass = 0;
         while (!sorted) {
-            //start passing
+            //start pass
+
+            //triggers the first draw
             this.fireSortingPassStart(pass, this.data);
 
             sorted = true;
+
             for (int i = 0; i < this.data.size() - 1; i++) {
-                //Sorting step
+
 
                 if (this.data.get(i) > this.data.get(i + 1)) {
+
+                    //swaps values
                     temp = this.data.get(i);
                     this.data.set(i, this.data.get(i + 1));
                     this.data.set(i + 1, temp);
+
                     sorted = false;
                 }
+
             }
-            this.fireSortingPassEnd(pass,this.data);
+
+            //triggers the first draw
+            this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
+
+            //increases the pass number and ends pass
             pass++;
-            //end pass
         }
     }
 }

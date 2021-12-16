@@ -1,13 +1,16 @@
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
+import javax.sound.midi.*;
 
 public class Runner {
 
     public static void main(String[] args) {
 
 
-        File book = new File("/Users/lboschi25/Dropbox/BoschiLorenzo/Projects/SortingAlgProject/src/allOfHarryPotter1.txt");
+
+        File book = new File("/Users/lboschi25/Dropbox/BoschiLorenzo/Projects/SortingAlgProject/src/allOf" +
+                "HarryPotter1.txt");
 
         AbstractSort sorter;
         JavaPaintUI UI = new JavaPaintUI();
@@ -29,13 +32,17 @@ public class Runner {
                     choices, //array of options
                     choices[0]); //the default
 
-            int numOfItems = Integer.parseInt(JOptionPane.showInputDialog("How many items would you like to sort?(1 - 720)"));
+            int numOfItems = Integer.parseInt(JOptionPane.showInputDialog("How many items would you like to"
+                    + " sort?(1 - 720)"));
+
+            //if you go past 720 then it does not display
             if (numOfItems > 720)
                 numOfItems = 720;
 
             ArrayList<Integer> arrayIntList = Utility.ShuffledIntArray(numOfItems);
 
-            int sortSpeed = Integer.parseInt(JOptionPane.showInputDialog("How fast do you want it to sort(1-10)"));
+            int sortSpeed = Integer.parseInt(JOptionPane.showInputDialog("How fast do you want it to sort(1 (fastest)"
+                    + "- 10 (slowest)"));
 
 
             if (choice.equalsIgnoreCase("bubble")) {
@@ -58,6 +65,8 @@ public class Runner {
                     null,
                     options, //array of options
                     options[0]); //the default
+
+
             if (contChoice == "No") {
                 cont = false;
             }
@@ -65,6 +74,7 @@ public class Runner {
 
             //ArrayList<String> sortedBook = BookSort.bookSort(book);
         }
+
         UI.setVisible(false);
         System.exit(0);
 
