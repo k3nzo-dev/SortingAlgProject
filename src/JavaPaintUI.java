@@ -12,6 +12,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+
 class JavaPaintUI extends JFrame
         implements SortingEventListener {
 
@@ -24,6 +25,7 @@ class JavaPaintUI extends JFrame
     private static int Y_MARGIN_TOP = 10;
     private static int Y_MARGIN_BOT = 50;
     private static int X_MARGIN = 20;
+    int displayPass = 0;
 
 
     public JavaPaintUI() {
@@ -53,7 +55,7 @@ class JavaPaintUI extends JFrame
 
         // add the component to the frame to see it!
         this.setContentPane(jPanel);
-        // be nice to testers..
+        // be nice to testers...
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
     }// </editor-fold>
@@ -94,16 +96,16 @@ class JavaPaintUI extends JFrame
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            draw(g);
+            drawSort(g);
 
         }
 
     }
 
-    private void draw(Graphics g) {
-        if (this.data != null) {
 
-//            Graphics2D g2d = (Graphics2D) g;
+    private void drawSort(Graphics g) {
+
+        if (this.data != null) {
 
 
             double panelWidth = this.getWidth();
@@ -112,22 +114,15 @@ class JavaPaintUI extends JFrame
 
             int yRange = this.getHeight() - (Y_MARGIN_BOT + Y_MARGIN_TOP);
 
+            //Counts the number of passes
+            Color textColor = new Color(255, 255, 255);
+            g.setColor(textColor);
+            Font font = new Font("Eurostile", Font.PLAIN, 30);
+            g.setFont(font);
+            g.drawString("Passes: " + displayPass,56, 40);
 
             for (int i = 0; i < this.data.size(); i++) {
 
-//                double stepSize = (double)yRange / this.data.size();
-//                double space = yRange - (stepSize * this.data.get(i));
-//
-//
-//                double baseX = X_MARGIN + (i * (barWidth * 2));
-//                double baseY = Y_MARGIN_TOP + space;
-//                double height = (this.data.get(i) + 1) * stepSize;
-//
-//
-//
-//
-//                Rectangle2D r2d = new Rectangle2D.Double(height,barWidth,baseX,baseY);
-//                g2d.fill(r2d);
 
                 int stepSize = yRange / this.data.size();
                 int space = yRange - (stepSize * this.data.get(i));
@@ -145,6 +140,8 @@ class JavaPaintUI extends JFrame
                 float r2 = 0.24706F;
                 float g2 = 0.78824F;
                 float b2 = 0.75294F;
+                //declares 2 sRGB colors
+
 
                 Float rDif = r1 - r2;
                 Float gDif = g1 - g2;
@@ -153,20 +150,22 @@ class JavaPaintUI extends JFrame
                 double rScale = rDif / this.data.size();
                 double gScale = gDif / this.data.size();
                 double bScale = bDif / this.data.size();
+                //give a difference for an easy gradiant
 
 
                 for (int j = 0; j < this.data.get(i); j++) {
                     r1 -= rScale;
                     b1 -= bScale;
                     g1 -= gScale;
-
                 }
-                Color test = new java.awt.Color(r1, g1, b1);
-
                 //gives each of the indexes its own color
-                g.setColor(test);
 
+                Color gradiantColor = new Color(r1, g1, b1);
+
+
+                g.setColor(gradiantColor);
                 g.fillRoundRect(baseX, baseY, width, height, 15, 15);
+
             }
         }
 
@@ -176,7 +175,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onStartSortingPass(int pass, ArrayList<Integer> data) {
         this.data = data;
-
+        displayPass = pass;
         //only runs the first time the first time
         if (pass == 0) {
             this.jPanel.repaint();
@@ -186,6 +185,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onEndSortingPass(int pass, ArrayList<Integer> data) {
         //paints every time at the end of the pass
+        displayPass = pass;
         this.jPanel.repaint();
     }
 }

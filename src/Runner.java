@@ -1,16 +1,23 @@
 import javax.swing.*;
-import java.io.File;
 import java.util.ArrayList;
-import javax.sound.midi.*;
 
 public class Runner {
 
+    /**
+     * A sorting algorithm display user interface
+     * @author Lorenzo Boschi
+     * @version 1.0.0
+     */
     public static void main(String[] args) {
 
 
-
-        File book = new File("/Users/lboschi25/Dropbox/BoschiLorenzo/Projects/SortingAlgProject/src/allOf" +
-                "HarryPotter1.txt");
+//        File book = new File("/Users/lboschi25/Dropbox/BoschiLorenzo/Projects/SortingAlgProject/Untitled.rtf");
+//
+//
+//        ArrayList<String> sortedBook = BookSort.bookSort(book);
+//        for (int i = 0; i < sortedBook.size(); i++) {
+//            System.out.println(sortedBook.get(i));
+//        }
 
         AbstractSort sorter;
         JavaPaintUI UI = new JavaPaintUI();
@@ -20,17 +27,11 @@ public class Runner {
         while (cont) {
 
 
-            String[] choices = {"Bubble", "Selection"};
+            String[] choices = {"Bubble", "Selection", "Insertion"};
             String instructions = "What sort method would you like to use?";
             String title = "Sort Chose";
-            String choice = (String) JOptionPane.showInputDialog(
-                    null,
-                    instructions, //text in window
-                    title, //titlebar
-                    JOptionPane.PLAIN_MESSAGE, //the icon type
-                    null,
-                    choices, //array of options
-                    choices[0]); //the default
+            String choice = Utility.multiStringChoices(instructions, title, choices);
+
 
             int numOfItems = Integer.parseInt(JOptionPane.showInputDialog("How many items would you like to"
                     + " sort?(1 - 720)"));
@@ -39,7 +40,8 @@ public class Runner {
             if (numOfItems > 720)
                 numOfItems = 720;
 
-            ArrayList<Integer> arrayIntList = Utility.ShuffledIntArray(numOfItems);
+            ArrayList<Integer> arrayIntList = Utility.shuffledIntArray(numOfItems);
+            System.out.println(arrayIntList);
 
             int sortSpeed = Integer.parseInt(JOptionPane.showInputDialog("How fast do you want it to sort(1 (fastest)"
                     + "- 10 (slowest)"));
@@ -54,7 +56,12 @@ public class Runner {
                 sorter = new SelectionSortAlg(arrayIntList);
                 sorter.setSortingListener(UI);
                 sorter.sort(sortSpeed * 10);
+            }else if(choice.equalsIgnoreCase(("Insertion"))){
+                sorter = new InsertionSort(arrayIntList);
+                sorter.setSortingListener(UI);
+                sorter.sort(sortSpeed * 10);
             }
+
 
             String[] options = {"Yes", "No"};
             String contChoice = (String) JOptionPane.showInputDialog(
@@ -72,7 +79,7 @@ public class Runner {
             }
 
 
-            //ArrayList<String> sortedBook = BookSort.bookSort(book);
+
         }
 
         UI.setVisible(false);

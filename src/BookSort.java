@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 public class BookSort {
 
+    /**
+     *
+     * @param file
+     * @return
+     */
     public static ArrayList<String> bookSort(File file) {
         Scanner input = null;
         ArrayList<String> allWords = new ArrayList<>();
@@ -18,7 +23,7 @@ public class BookSort {
 
         while (input.hasNext()) {
             String word = input.next();
-            //word.replaceAll("[.,?!<>|}{'\\/'\"  ]", "");
+            word.replaceAll("[.,?!<>|}{'\\/'\" @#$%^&*()_+|}{}:;~`]", "");
             allWords.add(word);
 
         }

@@ -8,7 +8,6 @@ public class BubSortAlg
 
     public void sort(int delay) {
 
-
         boolean sorted = false;
         int temp;
         int pass = 0;
@@ -23,19 +22,19 @@ public class BubSortAlg
             for (int i = 0; i < this.data.size() - 1; i++) {
 
 
-                if (this.data.get(i) > this.data.get(i + 1)) {
+                    if (this.data.get(i) > this.data.get(i + 1)) {
 
-                    //swaps values
-                    temp = this.data.get(i);
-                    this.data.set(i, this.data.get(i + 1));
-                    this.data.set(i + 1, temp);
+                        //swaps values
+                        temp = this.data.get(i);
+                        this.data.set(i, this.data.get(i + 1));
+                        this.data.set(i + 1, temp);
 
-                    sorted = false;
-                }
+                        sorted = false;
+                    }
 
             }
 
-            //triggers the first draw
+            //triggers the draw
             this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
 
