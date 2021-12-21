@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.sound.midi.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -22,7 +23,7 @@ public class Utility {
                 title, JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static ArrayList<Integer> ShuffledIntArray(int max) {
+    public static ArrayList<Integer> shuffledIntArray(int max) {
         ArrayList<Integer> intList = new ArrayList<>();
         for (int i = 0; i < max; i++) {
             intList.add(i);
@@ -30,6 +31,60 @@ public class Utility {
         Collections.shuffle(intList);
 
         return intList;
+    }
+
+    public static ArrayList<Integer> orderedIntArray(int max) {
+        ArrayList<Integer> intList = new ArrayList<>();
+        for (int i = 0; i < max; i++) {
+            intList.add(i);
+        }
+
+        return intList;
+    }
+
+    /**
+     * @param instructions The text in the window
+     * @param title The text on top of the window
+     * @param choices An array of choices for user
+     * @return The users choice out of the array of choices
+     */
+    public static String multiStringChoices(String instructions, String title, String[] choices) {
+        return (String) JOptionPane.showInputDialog(
+                null,
+                instructions, //text in window
+                title, //titlebar
+                JOptionPane.PLAIN_MESSAGE, //the icon type
+                null,
+                choices, //array of options
+                choices[0]); //the default
+    }
+
+
+    public static void playNote(int noteNum, int instrument, int delay) {
+
+        Synthesizer midiSynth = null;
+        try {
+            midiSynth = MidiSystem.getSynthesizer();
+            midiSynth.open();
+
+
+
+
+
+            Instrument[] instr = midiSynth.getDefaultSoundbank().getInstruments();
+            MidiChannel[] mChannels = midiSynth.getChannels();
+
+            midiSynth.loadInstrument(instr[instrument]);
+
+
+            mChannels[0].noteOn(noteNum, 100);
+
+            mChannels[0].noteOff(noteNum);
+            //Utility.sleepIt(250);
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
