@@ -23,17 +23,18 @@ public class Utility {
                 title, JOptionPane.PLAIN_MESSAGE);
     }
 
-    public static ArrayList<Integer> shuffledIntArray(int max) {
+    public static ArrayList<Integer> shuffledIntList(int max) {
         ArrayList<Integer> intList = new ArrayList<>();
         for (int i = 0; i < max; i++) {
             intList.add(i);
         }
+
         Collections.shuffle(intList);
 
         return intList;
     }
 
-    public static ArrayList<Integer> orderedIntArray(int max) {
+    public static ArrayList<Integer> orderedIntList(int max) {
         ArrayList<Integer> intList = new ArrayList<>();
         for (int i = 0; i < max; i++) {
             intList.add(i);
@@ -42,10 +43,23 @@ public class Utility {
         return intList;
     }
 
+
+    public static boolean arrayListChecker(ArrayList<Integer> data) {
+//        ArrayList<Integer> sortedArray = orderedIntList(data.size());
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) != i)
+                return false;
+
+
+        }
+        return true;
+
+    }
+
     /**
      * @param instructions The text in the window
-     * @param title The text on top of the window
-     * @param choices An array of choices for user
+     * @param title        The text on top of the window
+     * @param choices      An array of choices for user
      * @return The users choice out of the array of choices
      */
     public static String multiStringChoices(String instructions, String title, String[] choices) {
@@ -66,9 +80,6 @@ public class Utility {
         try {
             midiSynth = MidiSystem.getSynthesizer();
             midiSynth.open();
-
-
-
 
 
             Instrument[] instr = midiSynth.getDefaultSoundbank().getInstruments();

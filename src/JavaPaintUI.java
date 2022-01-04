@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 
@@ -110,7 +109,7 @@ class JavaPaintUI extends JFrame
 
             double panelWidth = this.getWidth();
 
-            double barWidth = (panelWidth / this.data.size());
+            double barWidth = (panelWidth / this.data.size())/2;
 
             int yRange = this.getHeight() - (Y_MARGIN_BOT + Y_MARGIN_TOP);
 

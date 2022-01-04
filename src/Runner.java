@@ -40,7 +40,7 @@ public class Runner {
             if (numOfItems > 720)
                 numOfItems = 720;
 
-            ArrayList<Integer> arrayIntList = Utility.shuffledIntArray(numOfItems);
+            ArrayList<Integer> arrayIntList = Utility.shuffledIntList(numOfItems);
             System.out.println(arrayIntList);
 
             int sortSpeed = Integer.parseInt(JOptionPane.showInputDialog("How fast do you want it to sort(1 (fastest)"
@@ -50,6 +50,7 @@ public class Runner {
             if (choice.equalsIgnoreCase("bubble")) {
                 sorter = new BubSortAlg(arrayIntList);
                 sorter.setSortingListener(UI);
+
                 sorter.sort(sortSpeed * 10);
 
             } else if (choice.equalsIgnoreCase("Selection")) {

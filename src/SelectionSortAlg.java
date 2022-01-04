@@ -38,8 +38,6 @@ public class SelectionSortAlg
 
             //increases the pass number and ends pass
             pass++;
-
-
         }
 
     }
