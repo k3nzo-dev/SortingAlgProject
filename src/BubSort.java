@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class BubSortAlg
+public class BubSort
         extends AbstractSort {
-    public BubSortAlg(ArrayList<Integer> data) {
+    public BubSort(ArrayList<Integer> data) {
         super(data);
     }
 
-    public void sort(int delay) {
+    public int sort(int delay) {
 
         boolean sorted = false;
         int temp;
@@ -41,6 +41,7 @@ public class BubSortAlg
             //increases the pass number and ends pass
             pass++;
         }
+       return pass;
     }
 }
 

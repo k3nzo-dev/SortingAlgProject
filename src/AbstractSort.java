@@ -9,7 +9,7 @@ public abstract class AbstractSort {
     protected ArrayList<Integer> data;
     protected SortingEventListener listener;
 
-    public abstract void sort(int delay);
+    public abstract int sort(int delay);
 
     public void setSortingListener(SortingEventListener sel) {
         this.listener = sel;

@@ -45,7 +45,6 @@ public class Utility {
 
 
     public static boolean arrayListChecker(ArrayList<Integer> data) {
-//        ArrayList<Integer> sortedArray = orderedIntList(data.size());
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i) != i)
                 return false;

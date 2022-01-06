@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class SelectionSortAlg
+public class SelectionSort
         extends AbstractSort {
-    public SelectionSortAlg(ArrayList<Integer> data) {
+    public SelectionSort(ArrayList<Integer> data) {
         super(data);
     }
 
-    public void sort(int delay) {
+    public int sort(int delay) {
 
         int pass = 0;
         for (int i = 0; i < this.data.size(); i++) {
@@ -39,6 +39,7 @@ public class SelectionSortAlg
             //increases the pass number and ends pass
             pass++;
         }
+        return pass;
 
     }
 

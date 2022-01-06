@@ -1,5 +1,5 @@
 /*
- * All of this code except the "draw, onEndSortingPass and onStartSortingPass are from Stack Overflow
+ * All of this code except the "drawSort, onEndSortingPass and onStartSortingPass are from Stack Overflow
  *   https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
  */
 
@@ -109,7 +109,7 @@ class JavaPaintUI extends JFrame
 
             double panelWidth = this.getWidth();
 
-            double barWidth = (panelWidth / this.data.size())/2;
+            double barWidth = (panelWidth / this.data.size()) / 2;
 
             int yRange = this.getHeight() - (Y_MARGIN_BOT + Y_MARGIN_TOP);
 
@@ -118,7 +118,7 @@ class JavaPaintUI extends JFrame
             g.setColor(textColor);
             Font font = new Font("Eurostile", Font.PLAIN, 30);
             g.setFont(font);
-            g.drawString("Passes: " + displayPass,56, 40);
+            g.drawString("Passes: " + displayPass, 56, 40);
 
             for (int i = 0; i < this.data.size(); i++) {
 
@@ -139,7 +139,7 @@ class JavaPaintUI extends JFrame
                 float r2 = 0.24706F;
                 float g2 = 0.78824F;
                 float b2 = 0.75294F;
-                //declares 2 sRGB colors
+                //declares 2 sets of  sRGB values
 
 
                 Float rDif = r1 - r2;
@@ -149,7 +149,7 @@ class JavaPaintUI extends JFrame
                 double rScale = rDif / this.data.size();
                 double gScale = gDif / this.data.size();
                 double bScale = bDif / this.data.size();
-                //give a difference for an easy gradiant
+                //give a difference for a gradiant
 
 
                 for (int j = 0; j < this.data.get(i); j++) {
@@ -174,7 +174,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onStartSortingPass(int pass, ArrayList<Integer> data) {
         this.data = data;
-        displayPass = pass;
+        displayPass = pass + 1;
         //only runs the first time the first time
         if (pass == 0) {
             this.jPanel.repaint();
@@ -184,7 +184,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onEndSortingPass(int pass, ArrayList<Integer> data) {
         //paints every time at the end of the pass
-        displayPass = pass;
+        displayPass = pass + 1;
         this.jPanel.repaint();
     }
 }

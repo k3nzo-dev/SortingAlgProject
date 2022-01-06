@@ -7,11 +7,11 @@ public class InsertionSort extends
         super(data);
     }
 
-    public void sort(int delay) {
+    public int sort(int delay) {
         boolean sorted = false;
-
+        int pass = 0;
         while (!sorted) {
-            int pass = 0;
+
             int len = this.data.size();
 
             this.fireSortingPassStart(delay, this.data);
@@ -44,6 +44,9 @@ public class InsertionSort extends
             sorted = Utility.arrayListChecker(this.data);
 
         }
+
+        return pass;
+
     }
 }
 
