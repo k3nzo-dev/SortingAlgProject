@@ -6,25 +6,23 @@
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 
-class JavaPaintUI extends JFrame
-        implements SortingEventListener {
+class JavaPaintUI extends JFrame implements SortingEventListener {
 
 
     private final int tool = 1;
     int currentX, currentY, oldX, oldY;
     private ArrayList<Integer> data;
     private JPanel jPanel;
+    private JButton quitButton;
 
     private static int Y_MARGIN_TOP = 10;
     private static int Y_MARGIN_BOT = 50;
     private static int X_MARGIN = 20;
-    int displayPass = 0;
+    int displayChanges = 0;
 
 
     public JavaPaintUI() {
@@ -52,9 +50,9 @@ class JavaPaintUI extends JFrame
             }
         });
 
+
         // add the component to the frame to see it!
-        this.setContentPane(jPanel);
-        // be nice to testers...
+        this.add(jPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
     }// </editor-fold>
@@ -88,6 +86,13 @@ class JavaPaintUI extends JFrame
         BarPanel() {
             // set a preferred size for the custom panel.
             setPreferredSize(new Dimension(3000, 1600));
+            quitButton = new JButton("Quit");
+            quitButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                   System.exit(0);
+                }
+            });
+            this.add(quitButton);
         }
 
 
@@ -118,7 +123,7 @@ class JavaPaintUI extends JFrame
             g.setColor(textColor);
             Font font = new Font("Eurostile", Font.PLAIN, 30);
             g.setFont(font);
-            g.drawString("Passes: " + displayPass, 56, 40);
+            g.drawString("Changes: " + displayChanges, 56, 40);
 
             for (int i = 0; i < this.data.size(); i++) {
 
@@ -174,7 +179,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onStartSortingPass(int pass, ArrayList<Integer> data) {
         this.data = data;
-        displayPass = pass + 1;
+        displayChanges = pass + 1;
         //only runs the first time the first time
         if (pass == 0) {
             this.jPanel.repaint();
@@ -184,7 +189,7 @@ class JavaPaintUI extends JFrame
     @Override
     public void onEndSortingPass(int pass, ArrayList<Integer> data) {
         //paints every time at the end of the pass
-        displayPass = pass + 1;
+        displayChanges = pass + 1;
         this.jPanel.repaint();
     }
 }

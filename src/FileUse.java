@@ -27,7 +27,7 @@ public class FileUse {
 
 
         String oldFile = "";
-//stores the past file in a string
+        //stores the past file in a string
         for (int i = 0; i < oldSorts.size(); i++)
             oldFile += oldSorts.get(i) + "\n";
 

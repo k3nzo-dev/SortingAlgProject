@@ -30,7 +30,10 @@ public class BubSort
                         this.data.set(i + 1, temp);
 
                         sorted = false;
+                        //increases the pass number
+                        pass++;
                     }
+
 
             }
 
@@ -38,8 +41,7 @@ public class BubSort
             this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
 
-            //increases the pass number and ends pass
-            pass++;
+
         }
        return pass;
     }

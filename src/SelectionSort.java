@@ -23,6 +23,8 @@ public class SelectionSort
                     //stores for swap
                     min = this.data.get(j);
                     minIndex = j;
+                    //increases the pass number
+                    pass++;
                 }
 
             }
@@ -36,8 +38,7 @@ public class SelectionSort
             this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
 
-            //increases the pass number and ends pass
-            pass++;
+
         }
         return pass;
 

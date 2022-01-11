@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.File;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Runner {
@@ -20,7 +19,7 @@ public class Runner {
         JavaPaintUI UI = new JavaPaintUI();
         UI.setVisible(true);
         boolean cont = true;
-        double passesPerItem = 0;
+        double changesPerItem = 0;
         FileUse f = new FileUse();
 
         while (cont) {
@@ -56,9 +55,9 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    passesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = (pass * 1.0) / numOfItems;
                     //updates the file
-                    f.fileAdd(choice, passesPerItem);
+                    f.fileAdd(choice, changesPerItem);
 
                 } else if (choice.equalsIgnoreCase("Selection")) {
 
@@ -69,9 +68,9 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    passesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = (pass * 1.0) / numOfItems;
                     //updates the file
-                    f.fileAdd(choice, passesPerItem);
+                    f.fileAdd(choice, changesPerItem);
 
                 } else if (choice.equalsIgnoreCase(("Insertion"))) {
 
@@ -82,9 +81,9 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    passesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = (pass * 1.0) / numOfItems;
                     //updates the file
-                    f.fileAdd(choice, passesPerItem);
+                    f.fileAdd(choice, changesPerItem);
 
                 } else if (choice.equalsIgnoreCase(("Bogo"))) {
 
@@ -95,34 +94,34 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    passesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = (pass * 1.0) / numOfItems;
                     //updates the file
-                    f.fileAdd(choice, passesPerItem);
+                    f.fileAdd(choice, changesPerItem);
 
                 }
 
 
-                double sortDif = sortDif(passesPerItem, avgOfPastSorts(choice));
+                double sortDif = sortDif(changesPerItem, avgOfPastSorts(choice));
 
                 if (sortDif >= 0) {
                     Utility.popup("Efficiency",
-                            "Your number of  passes per item is " +
-                                    passesPerItem +
+                            "Your number of  changes per item is " +
+                                    changesPerItem +
                                     ". \nThat is " +
                                     sortDif +
-                                    " lower then past " +
+                                    " better then past " +
                                     choice.toLowerCase() +
                                     " sorts");
                 } else if (sortDif <= 0) {
                     //makes the negative positive
-                    passesPerItem += passesPerItem * 2;
+                    sortDif += sortDif * 2;
 
                     Utility.popup("Efficiency",
-                            "Your number of  passes per item is " +
-                                    passesPerItem +
+                            "Your number of  changes per item is " +
+                                    changesPerItem +
                                     ". \nThat is " +
                                     sortDif +
-                                    " lower then past " +
+                                    " worse then past " +
                                     choice.toLowerCase() +
                                     " sorts");
                 }
@@ -154,7 +153,7 @@ public class Runner {
 
     }
 
-    public static double avgOfPastSorts(String sortType) throws FileNotFoundException {
+    private static double avgOfPastSorts(String sortType) throws FileNotFoundException {
         double total = 0;
         File sortFile = new File("pastSorts/" + sortType + ".txt");
         Scanner oldSortReader = new Scanner(sortFile);
@@ -174,9 +173,8 @@ public class Runner {
 
     }
 
-    public static double sortDif(double perItemEfficiency, double oldAvg) {
+    private static double sortDif(double perItemEfficiency, double oldAvg) {
         return perItemEfficiency - oldAvg;
-
     }
 }
 

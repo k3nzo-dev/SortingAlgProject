@@ -27,6 +27,8 @@ public class InsertionSort extends
                     //swap
                     this.data.set(j + 1, this.data.get(j));
                     j = j - 1;
+                    //increases the pass number
+                    pass++;
                 }
                 //cont swap
                 this.data.set(j + 1, currentData);
@@ -36,9 +38,7 @@ public class InsertionSort extends
                 this.fireSortingPassEnd(pass, this.data);
                 Utility.sleepIt(delay);
 
-                //increases the pass number and ends pass
 
-                pass++;
             }
 
             sorted = Utility.arrayListChecker(this.data);
