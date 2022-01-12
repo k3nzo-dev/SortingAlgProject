@@ -55,7 +55,7 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    changesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = Utility.doubleCuttof((pass * 1.0) / numOfItems);
                     //updates the file
                     f.fileAdd(choice, changesPerItem);
 
@@ -68,7 +68,7 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    changesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = Utility.doubleCuttof((pass * 1.0) / numOfItems);
                     //updates the file
                     f.fileAdd(choice, changesPerItem);
 
@@ -81,7 +81,7 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    changesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = Utility.doubleCuttof((pass * 1.0) / numOfItems);
                     //updates the file
                     f.fileAdd(choice, changesPerItem);
 
@@ -94,14 +94,15 @@ public class Runner {
                     sorter.setSortingListener(UI);
                     pass = sorter.sort(sortSpeed * 10);
 
-                    changesPerItem = (pass * 1.0) / numOfItems;
+                    changesPerItem = Utility.doubleCuttof((pass * 1.0) / numOfItems);
                     //updates the file
                     f.fileAdd(choice, changesPerItem);
 
                 }
 
 
-                double sortDif = sortDif(changesPerItem, avgOfPastSorts(choice));
+                double sortDif = Utility.doubleCuttof(sortDif(changesPerItem, avgOfPastSorts(choice)));
+
 
                 if (sortDif >= 0) {
                     Utility.popup("Efficiency",

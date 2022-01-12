@@ -16,7 +16,7 @@ public class BogoSort
             Collections.shuffle(data);
 
             this.fireSortingPassEnd(pass, data);
-            Utility.sleepIt(delay);
+
             pass++;
 
         }

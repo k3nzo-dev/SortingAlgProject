@@ -41,7 +41,6 @@ public class BubSort
             this.fireSortingPassEnd(pass, this.data);
             Utility.sleepIt(delay);
 
-
         }
        return pass;
     }

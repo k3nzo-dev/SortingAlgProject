@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.sound.midi.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -97,5 +98,15 @@ public class Utility {
 
     }
 
+    public static double doubleCuttof(double value){
+        double d = value;
+        DecimalFormat df = new DecimalFormat("#.#");
+        double p = Double.parseDouble(df.format(d));
+        System.out.println(p);
+        return p;
+    }
 
+    public static void main(String[] args) {
+        doubleCuttof(123.12312312);
+    }
 }
