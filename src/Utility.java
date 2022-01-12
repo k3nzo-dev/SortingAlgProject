@@ -102,7 +102,6 @@ public class Utility {
         double d = value;
         DecimalFormat df = new DecimalFormat("#.#");
         double p = Double.parseDouble(df.format(d));
-        System.out.println(p);
         return p;
     }
 
