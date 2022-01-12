@@ -1,7 +1,1 @@
-<<<<<<< Updated upstream
 121.4
-=======
-2.8
-2.3
-4.7
->>>>>>> Stashed changes
