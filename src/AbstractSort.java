@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * The shell class for all sorts
+ */
 public abstract class AbstractSort {
 
     protected AbstractSort(ArrayList data) {

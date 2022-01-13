@@ -1,5 +1,10 @@
+import Tools.Toolbox;
+
 import java.util.ArrayList;
 
+/**
+ * A class to perform selection  sort
+ */
 public class SelectionSort
         extends AbstractSort {
     public SelectionSort(ArrayList<Integer> data) {
@@ -36,7 +41,7 @@ public class SelectionSort
 
             //trigger the draw
             this.fireSortingPassEnd(pass, this.data);
-            Utility.sleepIt(delay);
+            Toolbox.sleepIt(delay);
 
 
         }

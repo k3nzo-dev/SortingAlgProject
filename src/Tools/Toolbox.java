@@ -1,10 +1,14 @@
+package Tools;
+
 import javax.swing.*;
 import javax.sound.midi.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-
-public class Utility {
+/**
+ * A general class to provide a shortcuts
+ */
+public class Toolbox {
 
     public static boolean answeredYes(String response) {
         response = response.toLowerCase();
@@ -91,21 +95,31 @@ public class Utility {
             mChannels[0].noteOn(noteNum, 100);
 
             mChannels[0].noteOff(noteNum);
-            //Utility.sleepIt(250);
+            //toolbox.Utility.sleepIt(250);
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static double doubleCuttof(double value){
+    public static double doubleCutoff(double value) {
         double d = value;
         DecimalFormat df = new DecimalFormat("#.#");
         double p = Double.parseDouble(df.format(d));
         return p;
     }
 
-    public static void main(String[] args) {
-        doubleCuttof(123.12312312);
+    public static String yesOrNoPopUp(String question){
+        String[] options = {"Yes", "No"};
+        String contChoice = (String) JOptionPane.showInputDialog(
+                null,
+                question, //text in window
+                "Yes or No?", //title bar
+                JOptionPane.QUESTION_MESSAGE, //the icon type
+                null,
+                options, //array of options
+                options[1]); //the default
+        return contChoice;
     }
+
 }

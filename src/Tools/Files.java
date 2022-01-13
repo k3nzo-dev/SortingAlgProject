@@ -1,3 +1,5 @@
+package Tools;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -5,10 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileUse {
+/**
+ * Contains methods to make and write files
+ */
+public class Files {
 
-
-    public void fileAdd(String choice, double value) {
+    /**
+     * stores the old file then adds the new value to the file
+     * @param choice the name of the file you want to add to
+     * @param value the number to be writen
+     */
+    public void fileWrite(String choice, double value) {
         //makes an array list of the files lines
         File sortFile = new File("pastSorts/" + choice + ".txt");
         Scanner oldSortReader = null;
@@ -45,8 +54,11 @@ public class FileUse {
         }
     }
 
-
-    public static void fileWrite(String choice) {
+    /**
+     * Creates a file with the provided name
+     * @param choice the name of the file to write
+     */
+    public static void fileCreate(String choice) {
         try {
 
 
@@ -66,9 +78,6 @@ public class FileUse {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }

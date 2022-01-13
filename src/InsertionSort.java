@@ -1,4 +1,10 @@
+import Tools.Toolbox;
+
 import java.util.ArrayList;
+
+/**
+ * A class to perform insertion sort
+ */
 
 public class InsertionSort extends
         AbstractSort {
@@ -36,12 +42,12 @@ public class InsertionSort extends
 
                 //triggers the draw
                 this.fireSortingPassEnd(pass, this.data);
-                Utility.sleepIt(delay);
+                Toolbox.sleepIt(delay);
 
 
             }
 
-            sorted = Utility.arrayListChecker(this.data);
+            sorted = Toolbox.arrayListChecker(this.data);
 
         }
 

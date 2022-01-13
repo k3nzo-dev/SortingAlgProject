@@ -1,6 +1,8 @@
-/*
- * All of this code except the "drawSort, onEndSortingPass and onStartSortingPass are from Stack Overflow
- *   https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
+/**
+ * This class deals with all the graphics
+ *
+ * All of this code except the "drawSort, onEndSortingPass, onStartSortingPass, Button, and the change counter"
+ * are from Stack Overflow https://stackoverflow.com/questions/6118737/how-to-draw-in-jpanel-swing-graphics-java
  */
 
 import javax.swing.*;
@@ -89,7 +91,7 @@ class JavaPaintUI extends JFrame implements SortingEventListener {
             quitButton = new JButton("Quit");
             quitButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                   System.exit(0);
+                    System.exit(0);
                 }
             });
             this.add(quitButton);

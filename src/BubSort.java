@@ -1,5 +1,11 @@
+import Tools.Toolbox;
+
 import java.util.ArrayList;
 
+
+/**
+ * A class to perform bubble sort
+ */
 public class BubSort
         extends AbstractSort {
     public BubSort(ArrayList<Integer> data) {
@@ -39,7 +45,7 @@ public class BubSort
 
             //triggers the draw
             this.fireSortingPassEnd(pass, this.data);
-            Utility.sleepIt(delay);
+            Toolbox.sleepIt(delay);
 
         }
        return pass;
