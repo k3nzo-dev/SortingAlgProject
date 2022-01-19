@@ -19,11 +19,10 @@ class JavaPaintUI extends JFrame implements SortingEventListener {
     int currentX, currentY, oldX, oldY;
     private ArrayList<Integer> data;
     private JPanel jPanel;
-    private JButton quitButton;
 
-    private static int Y_MARGIN_TOP = 10;
-    private static int Y_MARGIN_BOT = 50;
-    private static int X_MARGIN = 20;
+    private static final int Y_MARGIN_TOP = 10;
+    private static final int Y_MARGIN_BOT = 50;
+    private static final int X_MARGIN = 20;
     int displayChanges = 0;
 
 
@@ -88,7 +87,7 @@ class JavaPaintUI extends JFrame implements SortingEventListener {
         BarPanel() {
             // set a preferred size for the custom panel.
             setPreferredSize(new Dimension(3000, 1600));
-            quitButton = new JButton("Quit");
+            JButton quitButton = new JButton("Quit");
             quitButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     System.exit(0);
@@ -149,9 +148,9 @@ class JavaPaintUI extends JFrame implements SortingEventListener {
                 //declares 2 sets of  sRGB values
 
 
-                Float rDif = r1 - r2;
-                Float gDif = g1 - g2;
-                Float bDif = b1 - b2;
+                float rDif = r1 - r2;
+                float gDif = g1 - g2;
+                float bDif = b1 - b2;
 
                 double rScale = rDif / this.data.size();
                 double gScale = gDif / this.data.size();

@@ -137,7 +137,7 @@ public class Runner {
                 String contChoice = Toolbox.yesOrNoPopUp("Would you like to continue");
 
 
-                if (Toolbox.answeredYes(contChoice)) {
+                if (!Toolbox.answeredYes(contChoice)) {
                     cont = false;
                 }
 

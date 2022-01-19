@@ -1,9 +1,6 @@
 package Tools;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,7 +64,6 @@ public class Files {
                 //tests to see if the file is existing if not then it creates one
                 if (myObj.createNewFile()) {
                     System.out.println("File created: " + myObj.getName());
-                } else {
                 }
 
             } catch (IOException e) {
